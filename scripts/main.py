@@ -45,12 +45,12 @@ def plot_all_rows(name, realizations):
 
 def main():
     # results.plot_effective_K(realizations=30)
-    run_ensemble("test", 30, h_b=0.6)
+    #run_ensemble("test", 1, h_b=0.6, perlen=1e6)
     # plot_all_rows("pirot3d", 1)
     #proc.get_steady_state_time_evolutions("pirot3d", 5)
     #results.compare_time_evolution("pirot3d", 30)
     #results.plot_surface_evolution("pirot3d_multi", 30, isochlors=[0.1, 0.9], nsteps=30)
-    cam.extract_results("test1")
+    cam.extract_results("test0")
 
 if __name__=="__main__":
     main()
