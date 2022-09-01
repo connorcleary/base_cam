@@ -9,7 +9,7 @@ from multiprocessing import Pool
 def run_realization(ppars):
     name,n,pars = ppars 
     swt = cam.build_steady_model(pars)
-    Kh, Kv =  par_utils.load_field(f".\\fields\\pirot3D\\80x40x50realization{n}.mat")
+    Kh, Kv =  par_utils.load_field(f"./fields/pirot3D/80x40x50realization{n}.mat")
     Kh = np.transpose(Kh, (2, 0, 1))[:,:,:]
     Kv = np.transpose(Kv, (2, 0, 1))[:,:,:]
     swt.lpf.hk = Kh
@@ -29,7 +29,7 @@ def run_ensemble(name=None, realizations=1, **kwargs):
     # for n in range(realizations):
     #     #pars = ModelParameters(f"{name}{n}", **kwargs)
     #     swt = cam.build_steady_model(pars)
-    #     Kh, Kv =  par_utils.load_field(f".\\fields\\pirot3D\\80x40x50realization{n}.mat")
+    #     Kh, Kv =  par_utils.load_field(f"./fields/pirot3D/80x40x50realization{n}.mat")
     #     Kh = np.transpose(Kh, (2, 0, 1))[:,:,:]
     #     Kv = np.transpose(Kv, (2, 0, 1))[:,:,:]
     #     swt.lpf.hk = Kh

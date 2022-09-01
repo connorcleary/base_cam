@@ -17,7 +17,7 @@ def build_steady_model(pars):
             swt: groundwater flow and transport model
     '''
     
-    model_ws = f".\\model_files\\{pars.name}"
+    model_ws = f"./model_files/{pars.name}"
     if not os.path.exists(model_ws):
         os.makedirs(model_ws)
 
@@ -201,7 +201,7 @@ def extract_results(name):
     """
     pars = load_parameters(name)
     name = pars.name
-    model_ws = f".\\model_files\\{name}"
+    model_ws = f"./model_files\\{name}"
     nstp = pars.perlen/pars.dt
 
     # open binary files

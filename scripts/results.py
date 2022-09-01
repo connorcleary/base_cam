@@ -95,10 +95,10 @@ def plot_results(name, timestep=-1, row=0, return_axs=False, figsize=(12,6),
     headcb.ax.set_title('Head (m)', fontsize = 'small')
     conccb.ax.set_title('Salinity (kg/m^3)', fontsize = 'small')
     
-    ws = os.path.join(f'.\\figures\\{name}')
+    ws = os.path.join(f'./figures/{name}')
     if not os.path.exists(ws):
         os.makedirs(ws)
-    plt.savefig(f"{ws}\\head_and_concentration", dpi=300)
+    plt.savefig(f"{ws}/head_and_concentration", dpi=300)
 
     # return axs objects if necessary
     if return_axs: return axs
@@ -111,7 +111,7 @@ def plot_effective_K(realizations=30):
     pars = ModelParameters()
 
     for n in range(realizations):
-        Kh, Kv =  par_utils.load_field(f".\\fields\\pirot3D\\80x40x50realization{n}.mat")
+        Kh, Kv =  par_utils.load_field(f"./fields/pirot3D/80x40x50realization{n}.mat")
         Kh = np.transpose(Kh, (2, 0, 1))[:,:,:]
         Kv = np.transpose(Kv, (2, 0, 1))[:,:,:]
         hk_array[n], vk_array[n], _ = par_utils.calculate_K_eff(pars, Kh, Kv)
@@ -128,7 +128,7 @@ def compare_time_evolution(name, realizations):
         pars = load_parameters(f"{name}{n}")
         
         concentration, head, qx, qy, qz = cam.load_results(f"{name}{n}")
-        Kh, Kv =  par_utils.load_field(f".\\fields\\pirot3D\\80x40x50realization{n}.mat")
+        Kh, Kv =  par_utils.load_field(f"./fields/pirot3D/80x40x50realization{n}.mat")
         Kh = np.transpose(Kh, (2, 0, 1))[:,:,:]
 
         for row in range(pars.nrow):
@@ -221,8 +221,8 @@ def compare_time_evolution(name, realizations):
             cb1.ax.set_title('log10[hk]', fontsize = 'small')
             cb2.ax.set_title('C (kg/m^3)', fontsize = 'small')
 
-            results_location = f'.\\results\\{name}'
-            plt.savefig(f"{results_location}\\steady3D_evolution{n}{row}", dpi=300)
+            results_location = f'./results/{name}'
+            plt.savefig(f"{results_location}/steady3D_evolution{n}{row}", dpi=300)
 
 
 def animate_func(num, pars, isochlor_evo, isochlors, Y, Z, ax):

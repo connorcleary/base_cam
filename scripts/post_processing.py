@@ -218,19 +218,19 @@ def get_steady_state_time_evolutions(name, realizations):
                 toe[i, j, kdx] = find_toe_position(concentration[i][k][:,j,:], pars)
                 mix[i, j, kdx] = find_mixing_volume(concentration[i][k][:,j,:], pars)
 
-    results_location = f'.\\results\\{name}'
+    results_location = f'./results/{name}'
     if not os.path.exists(results_location):
         os.makedirs(results_location)
-    np.save(f"{results_location}\\com_evolution_log", com)
-    np.save(f"{results_location}\\toe_evolution_log", toe)
-    np.save(f"{results_location}\\mix_evolution_log", mix)
+    np.save(f"{results_location}/com_evolution_log", com)
+    np.save(f"{results_location}/toe_evolution_log", toe)
+    np.save(f"{results_location}/mix_evolution_log", mix)
     pass
 
 def load_steady_metric_evolutions(name):
 
-    results_location = f'.\\results\\{name}'
-    com = np.load(f"{results_location}\\com_evolution_log.npy", allow_pickle=True)
-    toe = np.load(f"{results_location}\\toe_evolution_log.npy", allow_pickle=True)
-    mix = np.load(f"{results_location}\\mix_evolution_log.npy", allow_pickle=True)
+    results_location = f'./results/{name}'
+    com = np.load(f"{results_location}/com_evolution_log.npy", allow_pickle=True)
+    toe = np.load(f"{results_location}/toe_evolution_log.npy", allow_pickle=True)
+    mix = np.load(f"{results_location}/mix_evolution_log.npy", allow_pickle=True)
 
     return com, toe, mix
