@@ -22,7 +22,7 @@ def build_steady_model(pars):
         os.makedirs(model_ws)
 
     modelname = pars.name
-    swt = flopy.seawat.Seawat(modelname, model_ws=model_ws, exe_name=r"C:\Users\ccl124\bin\swt_v4x64.exe")
+    swt = flopy.seawat.Seawat(modelname, model_ws=model_ws, exe_name=pars.exe_path)
 
     delr = pars.Lx/pars.ncol
     delc = pars.Ly/pars.nrow
@@ -201,7 +201,7 @@ def extract_results(name):
     """
     pars = load_parameters(name)
     name = pars.name
-    model_ws = f"./model_files\\{name}"
+    model_ws = f"./model_files/{name}"
     nstp = pars.perlen/pars.dt
 
     # open binary files
@@ -242,7 +242,7 @@ def save_results(name, concentration, head, qx, qy, qz):
         Outputs:
             None
     """
-    ws = os.path.join(f'.\\results\\{name}')
+    ws = os.path.join(f'./results/{name}')
     if not os.path.exists(ws):
         os.makedirs(ws)
 
@@ -262,7 +262,7 @@ def load_results(name):
         Outputs:
             concentration, head... : numpy matrices of results
     """
-    ws = os.path.join(f'.\\results\\{name}')
+    ws = os.path.join(f'./results/{name}')
 
     with open(os.path.join(ws, f"qx.npy"), 'rb') as f: qx = np.load(f, allow_pickle=True)
     with open(os.path.join(ws, f"qy.npy"), 'rb') as f: qy = np.load(f, allow_pickle=True)

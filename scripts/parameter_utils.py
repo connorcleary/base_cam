@@ -27,7 +27,7 @@ def build_effective_model(pars, hk, vka, direction):
     """
         Build groundwater flow model for calculating effective conductivities
     """
-    model_ws = f".\\temp\\{pars.name}"
+    model_ws = f"./temp/{pars.name}"
     if not os.path.exists(model_ws):
         os.makedirs(model_ws)
 
@@ -104,11 +104,11 @@ def run_effective_model(gwf):
 
 def extract_effective_model(modelname):
 
-    model_ws = f".\\temp\\{modelname}"
+    model_ws = f"./temp/{modelname}"
     if not os.path.exists(model_ws):
         os.makedirs(model_ws)
 
-    cbb = bf.CellBudgetFile(f"{model_ws}\\{modelname}.cbc")
+    cbb = bf.CellBudgetFile(f"{model_ws}/{modelname}.cbc")
     times = cbb.get_times()
     kstpkper_list = cbb.get_kstpkper()
     frf = cbb.get_data(text="FLOW RIGHT FACE", totim=times[-1])[0]

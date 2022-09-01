@@ -15,7 +15,7 @@ def run_realization(ppars):
     swt.lpf.hk = Kh
     swt.lpf.vka = Kv
     cam.run_model(swt)
-    concentration, head, qx, qy, qz = cam.extract_results(f"{name}{n}")
+    # concentration, head, qx, qy, qz = cam.extract_results(f"{name}{n}")
 
 
 def run_ensemble(name=None, realizations=1, **kwargs):
@@ -24,7 +24,7 @@ def run_ensemble(name=None, realizations=1, **kwargs):
     for n in range(realizations):
         ppars.append([name, n, ModelParameters(f"{name}{n}", **kwargs)])
     
-    p = Pool(processes=1)
+    p = Pool(processes=8)
     p.map(run_realization, ppars)
     # for n in range(realizations):
     #     #pars = ModelParameters(f"{name}{n}", **kwargs)
@@ -45,12 +45,12 @@ def plot_all_rows(name, realizations):
 
 def main():
     # results.plot_effective_K(realizations=30)
-    run_ensemble("pirot3d_multi", 30, h_b=0.6, perlen=1e4, dt=1e4)
+    run_ensemble("test", 30, h_b=0.6)
     # plot_all_rows("pirot3d", 1)
     #proc.get_steady_state_time_evolutions("pirot3d", 5)
     #results.compare_time_evolution("pirot3d", 30)
     #results.plot_surface_evolution("pirot3d_multi", 30, isochlors=[0.1, 0.9], nsteps=30)
-
+    cam.extract_results("test1")
 
 if __name__=="__main__":
     main()

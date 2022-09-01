@@ -70,7 +70,6 @@ class ModelParameters:
         self.sconc=sconc
         self.rho_f=rho_f
         self.rho_s=rho_s
-        print(exe_file)
         with open(exe_file, 'r') as f: self.exe_path=f.readline()
         self.frequency=frequency
         self.nstp=int(perlen/dt)
@@ -86,18 +85,18 @@ class ModelParameters:
         """
             Save object
         """
-        model_ws = f".\\model_files\\{self.name}"
+        model_ws = f"./model_files/{self.name}"
         if not os.path.exists(model_ws):
             os.makedirs(model_ws)
 
-        f = open(f"{model_ws}\\pars", 'wb')
+        f = open(f"{model_ws}/pars", 'wb')
         pickle.dump(self, f)
         f.close()
 
 def load_parameters(name):
 
-    model_ws = f".\\model_files\\{name}"
-    f = open(f"{model_ws}\\pars", 'rb')
+    model_ws = f"./model_files/{name}"
+    f = open(f"{model_ws}/pars", 'rb')
     temp = pickle.load(f)
     f.close()          
     return temp
